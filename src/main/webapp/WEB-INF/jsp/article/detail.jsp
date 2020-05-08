@@ -2,34 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageName" value="게시물 리스트" />
+<c:set var="pageName" value="게시물 상세" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="table-box con">
 	<table>
 		<colgroup>
-			<col width="80">
 			<col width="180">
 			<col>
-			<col width="200">
 		</colgroup>
-		<thead>
+		<tbody>
 			<tr>
 				<th>번호</th>
-				<th>날짜</th>
-				<th>제목</th>
-				<th>비고</th>
+				<td>${article.id}</td>
 			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${articles}" var="article">
-				<tr>
-					<td>${article.id}</td>
-					<td>${article.regDate}</td>
-					<td><a href="./detail?id=${article.id}">${article.title}</a></td>
-					<td><a href="#">삭제</a></td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<th>날짜</th>
+				<td>${article.regDate}</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>${article.title}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>${article.body}</td>
+			</tr>
+			<tr>
+				<th>삭제</th>
+				<td><a href="#">삭제</a></td>
+			</tr>
 		</tbody>
 	</table>
 </div>
