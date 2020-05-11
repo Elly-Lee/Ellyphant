@@ -20,6 +20,21 @@
 		WHERE id = #{id}
 	</delete>
 	
+	<select id="getArticlesByBoardCode" resultType="Article"
+		parameterType="string">
+		SELECT A.*
+		FROM article AS A
+		INNER JOIN board AS B
+		ON A.boardId = B.id
+		WHERE B.code = #{boardCode}
+		ORDER BY A.id DESC		
+	</select>	
+	
+	<select id="getBoardByBoardCode" resultType="Board">
+		SELECT *
+		FROM board
+		WHERE code = #{boardCode}	
+	</select>	
 	
 	
 	<!-- <select id="getOne" parameterType="long" resultType="Article"> SELECT 
