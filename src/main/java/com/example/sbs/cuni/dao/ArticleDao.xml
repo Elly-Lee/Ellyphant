@@ -14,6 +14,12 @@
 		WHERE id = #{id}
 	</select>
 	
+	<delete id="deleteArticle">
+		DELETE
+		FROM article
+		WHERE id = #{id}
+	</delete>
+	
 	
 	
 	<!-- <select id="getOne" parameterType="long" resultType="Article"> SELECT 
