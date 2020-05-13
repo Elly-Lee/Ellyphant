@@ -14,10 +14,10 @@
 
 	<div class="menu-bar con">
 
-		<c:if test="${loginedMemberId != null}">
+		<c:if test="${isLogined}">
 			<a href="/member/doLogout">로그아웃</a>
 		</c:if>
-		<c:if test="${loginedMemberId == null}">
+		<c:if test="${isLogined == false}">
 			<a href="/member/login">로그인</a>
 			<a href="/member/join">회원가입</a>
 		</c:if>

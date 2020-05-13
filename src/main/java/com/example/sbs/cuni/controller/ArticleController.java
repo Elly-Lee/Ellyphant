@@ -3,6 +3,8 @@ package com.example.sbs.cuni.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +78,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("article/modify")
-	public String showModify(Model model, int id ) {
+	public String showModify(Model model, int id, HttpServletRequest request) {
 		Article article = articleService.getArticle(id);
 
 		model.addAttribute("article", article);
@@ -85,7 +87,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("article/doModify")
-	public String doModify(Model model, @RequestParam Map<String,Object> param) {
+	public String doModify(Model model, @RequestParam Map<String,Object> param, HttpServletRequest request) {
 		Map<String,Object> rs = articleService.modifyArticle(param);
 		
 		int id = Integer.parseInt((String) param.get("id"));
