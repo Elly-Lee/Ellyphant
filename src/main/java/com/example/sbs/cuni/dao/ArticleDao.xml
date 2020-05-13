@@ -20,6 +20,7 @@
 		title = #{title},
 		body = #{body},
 		boardId = #{boardId}
+		memberId = #{memberId}
 	</insert>
 	
 	<select id="getBoard" resultType="Board">
