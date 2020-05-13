@@ -4,9 +4,15 @@
 
 <script>
 	var alertMsg = '${alertMsg}'.trim();
+	var historyBack = '${historyBack}' == 'true';
+	
 	if (alertMsg) {
 		alert(alertMsg);
 	}
+	if(historyBack) {
+		history.back();
+	}
+	
 	var locationReplaceUrl = '${locationReplace}'.trim();
 	if (locationReplaceUrl) {
 		location.replace(locationReplaceUrl);

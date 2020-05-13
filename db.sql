@@ -4,6 +4,30 @@ CREATE DATABASE cuni2;
 
 USE cuni2;
 
+#회원
+CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    regDate DATETIME NOT NULL,
+    loginId CHAR(50) NOT NULL,
+    loginPw CHAR(50) NOT NULL,
+    `name` CHAR(50) NOT NULL
+);
+
+ALTER TABLE `cuni2`.`member` ADD UNIQUE INDEX (`loginId`);
+
+INSERT INTO `member`
+SET regDate = NOW(),
+`name` = '홍길동',
+`loginId` = 'user1',
+`loginPw` = 'user1';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+`name` = '홍길순',
+`loginId` = 'user2',
+`loginPw` = 'user2';
+
 CREATE TABLE board (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
@@ -29,6 +53,7 @@ CREATE TABLE article (
     PRIMARY KEY(id),
     regDate DATETIME NOT NULL,
     boardId INT(10) UNSIGNED NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
     title CHAR(100) NOT NULL,
     `body` CHAR(100) NOT NULL
 );
@@ -36,17 +61,20 @@ CREATE TABLE article (
 INSERT INTO article
 SET regDate = NOW(),
 boardId = 1,
+memberId = 1,
 title = '제목1',
 `body` = '제목1';
 
 INSERT INTO article
 SET regDate = NOW(),
 boardId = 2,
+memberId = 2,
 title = '제목2',
 `body` = '제목2';
 
 INSERT INTO article
 SET regDate = NOW(),
 boardId = 1,
+memberId = 2,
 title = '제목3',
-`body` = '제목3',
+`body` = '제목3';
