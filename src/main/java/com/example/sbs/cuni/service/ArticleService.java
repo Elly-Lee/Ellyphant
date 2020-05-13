@@ -22,4 +22,6 @@ public interface ArticleService {
 
 	Board getBoard(int boardId);
 
+	Map<String, Object> modifyArticle(Map<String, Object> param);
+
 }

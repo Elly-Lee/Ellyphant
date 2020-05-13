@@ -66,4 +66,16 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.getBoard(boardId);
 	}
 
+	@Override
+	public Map<String, Object> modifyArticle(Map<String, Object> param) {
+		articleDao.modifyArticle(param);		
+		int id = CUtil.getAsInt(param.get("id"));
+		Map<String,Object> rs = new HashMap<>();
+		
+		rs.put("resultCode", "S-1");
+		rs.put("msg", String.format("%d번 게시물이 수정되었습니다.", id));
+		
+		return rs;
+	}
+
 }

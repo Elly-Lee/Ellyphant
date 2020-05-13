@@ -3,6 +3,15 @@
 
 <mapper namespace="com.example.sbs.cuni.dao.ArticleDao">
 
+	<update id="modifyArticle">
+		UPDATE article
+		<set>
+			<if test="title != null">title=#{title},</if>
+			<if test="body != null">body=#{body},</if>			
+		</set>
+		WHERE id = #{id}
+	</update>
+	
 	<insert id="writeArticle" parameterType="map"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO article

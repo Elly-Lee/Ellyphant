@@ -30,7 +30,9 @@
 			</tr>
 			<tr>
 				<th>삭제</th>
-				<td><a href="#">삭제</a></td>
+				<td><a href="./doDelete?id=${article.id}"
+					onclick="if ( confirm('삭제하시겠습니까?') == false ) { return false; }">삭제</a>
+					<a href="./modify?id=${article.id}">수정</a></td>
 			</tr>
 		</tbody>
 	</table>
