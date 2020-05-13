@@ -1,10 +1,11 @@
 package com.example.sbs.cuni.dao;
 
-import java.lang.reflect.Member;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.example.sbs.cuni.dto.Member;
 
 @Mapper
 public interface MemberDao {
@@ -13,4 +14,5 @@ public interface MemberDao {
 
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
+	
 }

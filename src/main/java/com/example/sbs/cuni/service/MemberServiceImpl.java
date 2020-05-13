@@ -1,6 +1,6 @@
 package com.example.sbs.cuni.service;
 
-import java.lang.reflect.Member;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sbs.cuni.dao.MemberDao;
+import com.example.sbs.cuni.dto.Member;
 import com.example.sbs.cuni.util.CUtil;
 
 @Service
@@ -36,4 +37,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		return rs;
 	}
+
+	@Override
+	public Member getMemberByLoginId(String loginId) {
+		return memberDao.getMemberByLoginId(loginId); 
+	}	
 }
