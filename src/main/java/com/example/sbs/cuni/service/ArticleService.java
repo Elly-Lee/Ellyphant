@@ -30,4 +30,8 @@ public interface ArticleService {
 
 	void increaseArticleHit(int id);
 
+	Article getForPrintArticle(int id);
+
+	List<Article> getForPrintArticles(String boardCode);
+
 }

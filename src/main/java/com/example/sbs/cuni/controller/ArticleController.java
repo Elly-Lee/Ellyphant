@@ -23,7 +23,7 @@ public class ArticleController {
 	@RequestMapping("article/list")
 	public String showList(Model model, String boardCode) {
 		Board board = articleService.getBoard(boardCode);
-		List<Article> articles = articleService.getArticles(boardCode);
+		List<Article> articles = articleService.getForPrintArticles(boardCode);
 
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", board);
@@ -33,7 +33,7 @@ public class ArticleController {
 	@RequestMapping("article/detail")
 	public String showDetail(Model model, int id) {
 		articleService.increaseArticleHit(id);
-		Article article = articleService.getArticle(id);
+		Article article = articleService.getForPrintArticle(id);
 
 		model.addAttribute("article", article);
 
@@ -101,7 +101,7 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 
 		}
-		Article article = articleService.getArticle(id);
+		Article article = articleService.getForPrintArticle(id);
 
 		model.addAttribute("article", article);
 

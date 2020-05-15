@@ -30,4 +30,8 @@ public interface ArticleDao {
 
 	void increaseArticleHit(@Param("id") int id);
 
+	Article getForPrintArticle(@Param("id") int id);
+
+	List<Article> getForPrintArticlesByBoardCode(@Param("boardCode") String boardCode);
+
 }
