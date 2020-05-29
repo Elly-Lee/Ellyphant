@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageName" value="(테스트)게시물 상세" />
+<c:set var="pageName" value="게시물 상세" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="table-box con">
@@ -19,6 +19,10 @@
 			<tr>
 				<th>날짜</th>
 				<td>${article.regDate}</td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td>${article.extra.writer}</td>
 			</tr>
 			<tr>
 				<th>조회수</th>
