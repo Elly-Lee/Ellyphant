@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageName" value="게시물 상세" />
+<c:set var="pageName" value="(테스트)게시물 상세" />
 <%@ include file="../part/head.jspf"%>
 
 <div class="table-box con">
