@@ -34,4 +34,8 @@ public interface ArticleDao {
 
 	List<Article> getForPrintArticlesByBoardCode(@Param("boardCode") String boardCode);
 
+	int getLikePointByMemberId(@Param("id") int id, @Param("memberId") int memberId);
+
+	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);
+
 }

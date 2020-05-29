@@ -34,4 +34,8 @@ public interface ArticleService {
 
 	List<Article> getForPrintArticles(String boardCode);
 
+	Map<String, Object> getArticleLikeAvailable(int id, int actorMemberId);
+
+	Map<String, Object> likeArticle(int id, int actorMemberId);
+
 }

@@ -4,7 +4,6 @@ CREATE DATABASE cuni2;
 
 USE cuni2;
 
-#회원
 CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
@@ -19,7 +18,7 @@ ALTER TABLE `cuni2`.`member` ADD UNIQUE INDEX (`loginId`);
 INSERT INTO `member`
 SET regDate = NOW(),
 `name` = '홍길동',
-`loginId` = 'user1',
+`loginId` ='user1',
 `loginPw` = 'user1';
 
 INSERT INTO `member`
@@ -79,3 +78,13 @@ boardId = 1,
 memberId = 2,
 title = '제목3',
 `body` = '제목3';
+
+# 좋아요
+CREATE TABLE `articleLike` (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    regDate DATETIME NOT NULL,
+    articleId INT(10) UNSIGNED NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    `point` TINYINT(1) UNSIGNED NOT NULL
+);
