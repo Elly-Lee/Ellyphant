@@ -46,4 +46,6 @@ public interface ArticleService {
 
 	Article getForPrintArticle(int id, int actorMemberId);
 
+	int getLikePoint(int id);
+
 }
