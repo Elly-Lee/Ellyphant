@@ -38,4 +38,12 @@ public interface ArticleService {
 
 	Map<String, Object> likeArticle(int id, int actorMemberId);
 
+	Map<String, Object> getArticleCancelLikeAvailable(int id, int actorMemberId);
+
+	Map<String, Object> cancelLikeArticle(int id, int actorMemberId);
+
+	List<Article> getForPrintArticles(String boardCode, int actorMemberId);
+
+	Article getForPrintArticle(int id, int actorMemberId);
+
 }

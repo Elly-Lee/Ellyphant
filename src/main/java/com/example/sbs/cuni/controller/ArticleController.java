@@ -21,9 +21,10 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("article/list")
-	public String showList(Model model, String boardCode) {
+	public String showList(Model model, String boardCode, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		Board board = articleService.getBoard(boardCode);
-		List<Article> articles = articleService.getForPrintArticles(boardCode);
+		List<Article> articles = articleService.getForPrintArticles(boardCode,loginedMemberId);
 
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", board);
@@ -31,9 +32,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("article/detail")
-	public String showDetail(Model model, int id) {
+	public String showDetail(Model model, int id, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		articleService.increaseArticleHit(id);
-		Article article = articleService.getForPrintArticle(id);
+		Article article = articleService.getForPrintArticle(id, loginedMemberId);
 
 		model.addAttribute("article", article);
 
@@ -101,7 +103,7 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 
 		}
-		Article article = articleService.getForPrintArticle(id);
+		Article article = articleService.getForPrintArticle(id, loginedMemberId);
 
 		model.addAttribute("article", article);
 
@@ -145,6 +147,29 @@ public class ArticleController {
 		}
 
 		Map<String, Object> rs = articleService.likeArticle(id, loginedMemberId);
+
+		String msg = (String) rs.get("msg");
+
+		model.addAttribute("alertMsg", msg);
+		model.addAttribute("locationReplace", redirectUrl);
+
+		return "common/redirect";
+	}
+	
+	@RequestMapping("article/doCancelLike")
+	public String doCancelLike(Model model, int id, String redirectUrl, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+
+		Map<String, Object> articleCancelLikeAvailableRs = articleService.getArticleCancelLikeAvailable(id, loginedMemberId);
+
+		if (((String) articleCancelLikeAvailableRs.get("resultCode")).startsWith("F-")) {
+			model.addAttribute("alertMsg", articleCancelLikeAvailableRs.get("msg"));
+			model.addAttribute("historyBack", true);
+
+			return "common/redirect";
+		}
+
+		Map<String, Object> rs = articleService.cancelLikeArticle(id, loginedMemberId);
 
 		String msg = (String) rs.get("msg");
 
