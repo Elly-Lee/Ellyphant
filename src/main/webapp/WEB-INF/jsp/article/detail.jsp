@@ -17,21 +17,32 @@
 		if (confirm('추천 하시겠습니까?') == false) {
 			return;
 		}
-		$.post(
-			'./doLikeAjax',
-			{
-				id:id
-			},
-			function(data) {
-				if ( data.msg ) {
-					alert(data.msg);
-				}
-				if ( data.resultCode.substr(0, 2) == 'S-' ) {
-					ViewArticle1__updateLikePoint(data.likePoint);
-				}
-			},
-			'json'
-		);
+		$.post('./doLikeAjax', {
+			id : id
+		}, function(data) {
+			if (data.msg) {
+				alert(data.msg);
+			}
+			if (data.resultCode.substr(0, 2) == 'S-') {
+				ViewArticle1__updateLikePoint(data.likePoint);
+			}
+		}, 'json');
+	}
+
+	function callDoCancelLike() {
+		if (confirm('추천을 취소하시겠습니까?') == false) {
+			return;
+		}
+		$.post('./doCancelLikeAjax', {
+			id : id
+		}, function(data) {
+			if (data.msg) {
+				alert(data.msg);
+			}
+			if (data.resultCode.substr(0, 2) == 'S-') {
+				ViewArticle1__updateLikePoint(data.likePoint);
+			}
+		}, 'json');
 	}
 </script>
 
@@ -69,12 +80,8 @@
 			<tr>
 				<th>좋아요</th>
 				<td><span class="article--like-point">${article.extra.likePoint}</span>
-					/ <a href="#" onclick="callDoLike();">좋아요</a> 
-					<c:if test="${article.extra.loginedMemberCanCancelLike}">
-					<a href="./doCancelLike?id=${article.id}&redirectUrl=/article/detail?id=${article.id}"
-							onclick="if ( confirm('추천을 취소하시겠습니까?') == false ) { return false; }">좋아요취소</a>
-					</c:if>
-				</td>
+					/ <a href="#" onclick="callDoLike();">좋아요</a> <a href="#"
+					onclick="callDoCancelLike();">좋아요취소</a></td>
 			</tr>
 			<tr>
 				<th>삭제</th>
