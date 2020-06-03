@@ -48,4 +48,6 @@ public interface ArticleService {
 
 	int getLikePoint(int id);
 
+	Map<String, Object> writeReply(Map<String, Object> param);
+
 }

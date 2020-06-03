@@ -42,4 +42,6 @@ public interface ArticleDao {
 
 	int getLikePoint(@Param("id") int id);
 
+	void writeArticleReply(Map<String, Object> param);
+
 }
