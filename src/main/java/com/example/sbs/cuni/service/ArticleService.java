@@ -53,4 +53,11 @@ public interface ArticleService {
 
 	List<ArticleReply> getForPrintArticleReplies(int articleId);
 
+	Map<String, Object> getArticleReplyDeleteAvailable(int id, int actorMemberId);
+
+	Map<String, Object> deleteArticleReply(int id);
+	
+	ArticleReply getArticleReply(int id);
+
+
 }

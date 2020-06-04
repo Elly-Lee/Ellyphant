@@ -3,6 +3,20 @@
 
 <mapper namespace="com.example.sbs.cuni.dao.ArticleDao">
 
+
+	<select id="getArticleReply" resultMap="articleReply">
+		SELECT AR.*
+		FROM
+		articleReply AS AR
+		WHERE AR.id = #{id}
+	</select>
+	
+	<delete id="deleteArticleReply">
+		DELETE
+		FROM articleReply
+		WHERE id = #{id}
+	</delete>
+	
 	<insert id="writeArticleReply" parameterType="map"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO articleReply

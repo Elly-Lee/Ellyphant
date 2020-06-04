@@ -47,4 +47,8 @@ public interface ArticleDao {
 
 	List<ArticleReply> getForPrintArticleReplies(@Param("articleId") int articleId);
 
+	ArticleReply getArticleReply(@Param("id") int id);
+
+	void deleteArticleReply(@Param("id") int id);
+
 }
