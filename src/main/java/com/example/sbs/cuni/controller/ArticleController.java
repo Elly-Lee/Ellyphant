@@ -331,5 +331,19 @@ public class ArticleController {
 		return "common/redirect";
 	}
 	
+	@RequestMapping("article/doWriteReplyAjax")
+	@ResponseBody
+	public Map<String, Object> doWriteReplyAjax(@RequestParam Map<String, Object> param, HttpServletRequest request) {
+
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+		param.put("memberId", loginedMemberId);
+		Map<String, Object> rs = articleService.writeReply(param);
+
+		return rs;
+	}
+
+	
+	
+	
 	
 }
