@@ -145,7 +145,8 @@
 					<td>${articleReply.extra.writer}</td>
 					<td>${articleReply.body}</td>
 					<td><a href="./doDeleteReply?id=${articleReply.id}&redirectUrl=${urlEncodedRequesturiQueryString}"
-						onclick="if ( confirm('삭제하시겠습니까?') == false ) { return false; }">삭제</a></td>
+						onclick="if ( confirm('삭제하시겠습니까?') == false ) { return false; }">삭제</a><a
+						href="./modifyReply?id=${articleReply.id}&redirectUrl=${urlEncodedRequesturiQueryString}">수정</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

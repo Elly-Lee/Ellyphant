@@ -59,5 +59,11 @@ public interface ArticleService {
 	
 	ArticleReply getArticleReply(int id);
 
+	Map<String, Object> getArticleModifyReplyAvailable(int id, int actorMemberId);
+
+	ArticleReply getForPrintArticleReply(int id, int actorMemberId);
+
+	Map<String, Object> modifyReply(Map<String, Object> param);
+
 
 }
