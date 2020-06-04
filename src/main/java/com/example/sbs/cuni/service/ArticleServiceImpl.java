@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sbs.cuni.dao.ArticleDao;
 import com.example.sbs.cuni.dto.Article;
+import com.example.sbs.cuni.dto.ArticleReply;
 import com.example.sbs.cuni.dto.Board;
 import com.example.sbs.cuni.util.CUtil;
 
@@ -244,5 +245,10 @@ public class ArticleServiceImpl implements ArticleService {
 		rs.put("msg", String.format("댓글이 생성되었습니다.", id));
 		
 		return rs;
+	}
+
+	@Override
+	public List<ArticleReply> getForPrintArticleReplies(int articleId) {
+		return articleDao.getForPrintArticleReplies(articleId);
 	}
 }

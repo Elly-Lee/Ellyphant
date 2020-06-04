@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.sbs.cuni.dto.Article;
+import com.example.sbs.cuni.dto.ArticleReply;
 import com.example.sbs.cuni.dto.Board;
 
 @Mapper
@@ -43,5 +44,7 @@ public interface ArticleDao {
 	int getLikePoint(@Param("id") int id);
 
 	void writeArticleReply(Map<String, Object> param);
+
+	List<ArticleReply> getForPrintArticleReplies(@Param("articleId") int articleId);
 
 }

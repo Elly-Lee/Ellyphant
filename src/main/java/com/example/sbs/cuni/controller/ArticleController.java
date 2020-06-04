@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sbs.cuni.dto.Article;
+import com.example.sbs.cuni.dto.ArticleReply;
 import com.example.sbs.cuni.dto.Board;
 import com.example.sbs.cuni.service.ArticleService;
 
@@ -38,9 +39,13 @@ public class ArticleController {
 		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getForPrintArticle(id, loginedMemberId);
-
+		
 		model.addAttribute("article", article);
+		
+		List<ArticleReply> articleReplies = articleService.getForPrintArticleReplies(article.getId());
 
+		model.addAttribute("articleReplies", articleReplies);
+		
 		return "article/detail";
 	}
 

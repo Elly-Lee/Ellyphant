@@ -6,13 +6,27 @@
 	<insert id="writeArticleReply" parameterType="map"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO articleReply
-		SET regDate =
+		SET
+		regDate =
 		NOW(),
 		body = #{body},
 		articleId = #{articleId},
-		memberId = #{memberId}
+		memberId =
+		#{memberId}
 	</insert>
-	
+
+	<select id="getForPrintArticleReplies" resultMap="articleReply">
+		SELECT AR.*,
+		M.name AS extra__writer
+		FROM articleReply AS AR
+		INNER JOIN `member` AS M
+		ON AR.memberId = M.id
+		WHERE AR.articleId = #{articleId}
+		ORDER BY AR.id
+		DESC
+	</select>
+
+
 	<select id="getLikePoint" resultType="int">
 		SELECT
 		IFNULL(SUM(AL.point), 0) AS `point`
@@ -168,6 +182,16 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="ArticleReply" id="articleReply">
+		<id property="id" column="id" />
+		<id property="regDate" column="regDate" />
+		<id property="body" column="body" />
+		<id property="memberId" column="memberId" />
+		<id property="articleId" column="articleId" />
+		<association property="extra" javaType="map">
+			<id property="writer" column="extra__writer" />
+		</association>
+	</resultMap>
 
 
 	<!-- <select id="getOne" parameterType="long" resultType="Article"> SELECT 
