@@ -5,11 +5,34 @@
 <c:set var="pageName" value="게시물 상세" />
 <%@ include file="../part/head.jspf"%>
 
+<style>
+.article-reply-list-box tr .loading-inline {
+	display:none;
+	font-weight:bold;
+	color:red;
+}
+
+.article-reply-list-box tr[data-loading="Y"] .loading-none {
+	display:none;
+}
+
+.article-reply-list-box tr[data-loading="Y"] .loading-inline {
+	display:inline;
+}
+</style>
+
+
 <script>
 	var id = parseInt('${article.id}');
 </script>
 
 <script>
+
+	var ArticleReply__loadListDelay = 1000;
+
+	// 임시
+	ArticleReply__loadListDelay = 5000;
+	
 	function ViewArticle1__updateLikePoint(newLikePoint) {
 		$('.article--like-point').empty().append(newLikePoint);
 	}
@@ -84,7 +107,7 @@
 					onclick="callDoCancelLike();">좋아요취소</a></td>
 			</tr>
 			<tr>
-				<th>삭제</th>
+				<th>비고</th>
 				<td><a href="./doDelete?id=${article.id}"
 					onclick="if ( confirm('삭제하시겠습니까?') == false ) { return false; }">삭제</a>
 					<a href="./modify?id=${article.id}">수정</a></td>
@@ -151,7 +174,7 @@
 
 				ArticleReply__lastLoadedArticleReplyId = articleReply.id;
 			}
-			setTimeout(ArticleReply__loadList, 1000);
+			setTimeout(ArticleReply__loadList, ArticleReply__loadListDelay);
 		}, 'json');
 	}
 	
@@ -186,7 +209,24 @@
 	});
 
 	function ArticleReply__delete(obj) {
-			alert(obj);
+			var $clickedBtn = $(obj);
+			var $tr = $clickedBtn.closest('tr');
+
+			var replyId = parseInt($tr.attr('data-article-reply-id'));
+
+			$tr.attr('data-loading', 'Y');
+
+			$.post(
+					'./doDeleteReplyAjax',
+					{
+						id: replyId
+					},
+					function(data) {
+						$tr.remove();
+						$tr.attr('data-loading', 'N');
+					},
+					'json'
+			);			
 	}
 </script>
 
@@ -198,8 +238,10 @@
 				<td>{$날짜}</td>
 				<td>{$작성자}</td>
 				<td>{$내용}</td>
-				<td><a href="#" onclick="if ( confirm('정말 삭제하시겠습니까?') ) { ArticleReply__delete(this); } return false;">삭제</a>
-					<a href="#" onclick="return false;">수정</a>
+				<td>
+					<span class="loading-inline">삭제중입니다...</span>
+					<a class="loading-none" href="#" onclick="if ( confirm('정말 삭제하시겠습니까?') ) { ArticleReply__delete(this); } return false;">삭제</a>
+					<a class="loading-none" href="#" onclick="return false;">수정</a>
 				</td>				
 			</tr>
 		</tbody>

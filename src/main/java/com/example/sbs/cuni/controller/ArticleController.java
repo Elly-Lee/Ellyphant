@@ -63,6 +63,30 @@ public class ArticleController {
 		return "article/detail";
 	}
 
+	@RequestMapping("article/doDeleteReplyAjax")
+	@ResponseBody
+	public Map<String,Object> doDeleteReplyAjax(int id, String redirectUrl, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+
+		Map<String, Object> articleReplyDeleteAvailableRs = articleService.getArticleReplyDeleteAvailable(id, loginedMemberId);
+
+		if (((String) articleReplyDeleteAvailableRs.get("resultCode")).startsWith("F-")) {
+			return articleReplyDeleteAvailableRs;
+
+		}
+		Map<String, Object> rs = articleService.deleteArticleReply(id);
+
+		/*
+		 try {
+		  		Thread.sleep(3000);
+		 } catch (InterruptedException e) {
+		 	e.printStackTrace();
+		 }		 
+		 */
+
+		return rs;
+	}
+	
 	@RequestMapping("article/doDelete")
 	public String doDelete(Model model, int id, HttpServletRequest request) {
 		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
