@@ -65,5 +65,7 @@ public interface ArticleService {
 
 	Map<String, Object> modifyReply(Map<String, Object> param);
 
+	List<ArticleReply> getForPrintArticleReplies(int articleId, int from);
+
 
 }

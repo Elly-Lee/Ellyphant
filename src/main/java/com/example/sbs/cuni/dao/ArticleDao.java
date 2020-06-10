@@ -55,4 +55,6 @@ public interface ArticleDao {
 
 	void modifyArticleReply(Map<String, Object> param);
 
+	List<ArticleReply> getForPrintArticleRepliesFrom(@Param("articleId") int articleId, @Param("from") int from);
+
 }
